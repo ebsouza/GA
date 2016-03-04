@@ -77,7 +77,7 @@ void generatePop( int N, double population[81][N] )
 void evaluation(int N, double population[81][N])
 {
 	int i = 0 ;
-	//int t = N/2 ;
+
 	for ( i=0 ; i<N/2 ; i++  )
 	{
 		population[80][i] = ( (N/2) - i ) + 100;
@@ -85,6 +85,23 @@ void evaluation(int N, double population[81][N])
 	for ( i=N/2 ; i<N ; i++  )
 	{
 		population[80][i] = i + 100;
+	}
+}
+
+//Função avaliação 1
+void evaluation1(int N, double population[81][N])
+{
+	int i,j;
+
+	for ( i=0 ; i<N ; i++  )
+	{
+		for ( j=0 ; j<80 ; j++)
+		{
+			if ( population[j][i] != 0)
+			{
+				population[80][i]+=1;
+			}
+		}
 	}
 }
 
@@ -122,3 +139,110 @@ void sort( int N, double population[81][N] )
 	}
 
 }
+
+
+//Piorar solução
+ void popwrost( int N, int value , double population[81][N] )
+ {
+	 int i,j,k;
+	 int i1;//Indivíduo com avaliação igual a value
+	 int m=(N-1);//Controle do indivíduo de sofrerá mutação
+	 int c1=1;//Controle do indivíduo de sofrerá modificação
+
+
+	 for ( i=0 ; i<N ; i++ )
+	 {
+		 if ( population[80]>value )
+		 {
+			 i1=i;
+			 break;
+		 }
+	 }
+
+	 while ( c1<i1 )
+	 {
+		 //Mutação
+
+
+	 }
+ }
+
+ void selector( int N, double population[81][N], int G, double I1[81], double I2[81] )
+ {
+	 int i=0;
+
+	 //Variáveis
+	 int random1;
+	 int random2;
+	 int choose;
+	 int g=G/2;
+	 double percentage;
+	 double total;
+
+	 //Estrutura
+	 double AUX[2][g];
+	 double T[2][G];
+
+	 //Construção da estrutura composta por indivíduos do torneio
+	 for ( i=0 ; i<G ; i++)
+	 {
+		 choose = rand() % N + 1;
+		 T[0][i] = choose; //índice do indivíduo escolhido
+		 T[1][i] = population[80][choose]; //raio do respectivo indivíduo
+	 }
+
+
+	 //Seleção por torneio
+	 while ( G>2 )
+	 {
+		 //Torneio
+		 for ( i = 0 ; i < g ; i++)
+		 {
+
+			 //Gerações de 2 números aleatórios
+			 random1 = rand() % G + 1;
+			 random2 = rand() % G + 1;
+			 while ( random1 == random2 )
+			 {
+				 random2 = rand() % G + 1;
+			 }
+
+			 //Probabilidade de escolha
+			 percentage = (rand() % 100 )/100 ;
+
+			 //Promoção do torneio
+			 total = population[80][random1] + population[80][random2];
+			 if ( percentage < ( total - population[80][random1] )/total  )
+			 {
+				 AUX[0][i] = T[0][random1];
+				 AUX[1][i] = T[1][random1];
+			 }
+			 else
+			 {
+				 AUX[0][i] = T[0][random2];
+				 AUX[1][i] = T[1][random2];
+			 }
+		 }
+
+		 //Substituição dos indivíduos no conjunto T
+		 for ( i=0; i<g ; i++)
+		 {
+			 T[0][i] = AUX[0][i] ;
+			 T[1][i] = AUX[1][i] ;
+		 }
+
+		 G=G/2;
+		 g=g/2;
+
+	 }
+
+	 //Indivíduos selecionados
+	 for ( i=0 ; i<81 ; i++)
+	 {
+		 I1[i] = population[i][ (int)T[0][0] ];
+		 I2[i] = population[i][ (int)T[0][1] ];
+	 }
+
+
+
+ }

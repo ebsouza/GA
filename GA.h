@@ -16,16 +16,19 @@
   //Avaliação
   void evaluation( int N, double population[81][N]) ;
 
+  void evaluation1( int N, double population[81][N]) ;
+
 
   //Ordenação
-  void sort ( int N, double population[81][N] );
+  void sort( int N, double population[81][N] );
 
 
   //Piorar solução*
+  void popwrost( int N, int value , double population[81][N] );
 
 
   //Seleção por torneio
-
+  void selector( int N, double population[81][N], int G, double I1[81], double I2[81] );
 
   //Crossover
 

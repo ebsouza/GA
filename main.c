@@ -18,6 +18,8 @@ int main(void) {
 
 	//Parâmetros
 	int N=256;//Tamanho da população
+	int n=10;//Número de filhos gerados
+	int gerac=300;//Número de gerações
 
 	//Estruturas
 	double population[81][N];
@@ -29,6 +31,7 @@ int main(void) {
 		}
 	}
 
+	double I1[81], I2[81];
 
 	//Geração da população inicial
 	generatePop( N, population );
@@ -40,11 +43,11 @@ int main(void) {
 	}
 
 	//Avaliação(Inválida, somente teste)
-	evaluation ( N, population );
+	evaluation1 ( N, population );
 
 	for (  i = 0 ; i<N ; i++)
 	{
-		//printf( "eval %f , \n", population[80][i] );
+		printf( "eval %f , \n", population[80][i] );
 	}
 
 	//Ordenação
@@ -57,24 +60,35 @@ int main(void) {
 
 
 	//Piorar solução*
-	//
+
+	int g,r;
 	//Loop das gerações
+	for (g=0; g<gerac ; g++)
+	{
+		//Loop da reprodução
+		for (r=0; r<n; r++)
+		{
+			//Seleção por torneio
+			//
+			//Crossover
+			//
+			//Correção*
+			//
+			//Mutação
+			//
+			//Realoca os números infimos*
+		}
 
-	//Loop da reprodução
-	//
-	//Seleção por torneio
-	//
-	//Crossover
-	//
-	//Correção*
-	//
-	//Mutação
-	//
-	//Realoca os números infimos*
+		//Avaliar novas soluções
+		//
+		//Inserção das novas soluções na população
+	}
 
-	//Avaliar novas soluções
-	//
-	//Inserção das novas soluções na população
+
+
+
+
+
 	//
 	//Armazenamento das info*
 	//
