@@ -9,29 +9,30 @@
 #include <time.h>       /* time */
 
 
-//Geração da população inicial
 void generatePop( int N, double population[81][N] )
 {
 
   /* initialize random seed: */
   srand (time(NULL));
 
-  //Inicialização
-  int diastrat=40; //Máximo de dias de tratamento
-  int lin=81,col=N; //Linhas e colunas de population
-  int i; //Iterador
-  int restri[81]; //Restrição de não aplicação nos finais de semana
-  double dosemax; //Dose máxima aplicada
-  double doseaux=0; //Dose auxiliar
-  int choose; //Dia escolhido
+  //Parameters
+  int daystreat=40; //Period of treatment
+  int i; //Iterator
+  double dosemax; //Maximum dose applied
+  double doseaux=0; //Auxiliary variable dose
+  int choose; //Choosen day
 
-  //Restrição aos finais de semana------------
-  for ( i=0 ; i<81 ; i++)
+  int restri[81]; //Constraints mask
+
+
+
+  //Construction of restri------------
+  for ( i=0 ; i<80 ; i++)
   {
   		restri[i]=0;
   }
 
-  for ( i=5 ; i<81 ; i+=7 )
+  for ( i=5 ; i<80 ; i+=7 )
   {
   		restri[i]=1;
   }
@@ -42,25 +43,25 @@ void generatePop( int N, double population[81][N] )
   }
   //------------------------------------------
 
-  //Construção da população
+  //Generation population
   for ( i=0 ; i<N ; i++)
   {
   		dosemax = 65;
     	while ( dosemax > 0)
       {
-        //Escolhe um dia entre 1 a 40
-        choose = rand() % diastrat + 1;
+        //Choose a position between 0 and 39
+        choose = rand() % daystreat ;
 
-        //Não permite que o fim de semana seja escolhido
+        //It doesn't allow insert a dose in the weekend
         while ( restri[choose] == 1 )
         {
-          choose = rand() % diastrat + 1;
+          choose = rand() % daystreat ;
         }
 
-        //Determinação da dose auxiliar
+        //Set doseaux
         doseaux = dosemax * ( (double) (rand() % 100) ) / 300 ;
 
-        //Atribuição da dose na população
+        //Insert a dose in current solution
         population[choose][i] += doseaux ;
         dosemax -= doseaux ;
 
@@ -73,7 +74,7 @@ void generatePop( int N, double population[81][N] )
   }
 }
 
-//Função avaliação
+
 void evaluation(int N, double population[81][N])
 {
 	int i = 0 ;
@@ -88,7 +89,7 @@ void evaluation(int N, double population[81][N])
 	}
 }
 
-//Função avaliação 1
+
 void evaluation1(int N, double population[81][N])
 {
 	int i,j;
@@ -105,9 +106,10 @@ void evaluation1(int N, double population[81][N])
 	}
 }
 
-//Ordenação
+
 void sort( int N, double population[81][N] )
 {
+	//Sort by insertion sort
 	int i=0;
 	for ( i=0 ; i<N ; i++)
 	{
@@ -141,7 +143,6 @@ void sort( int N, double population[81][N] )
 }
 
 
-//Piorar solução
  void popwrost( int N, int value , double population[81][N] )
  {
 	 int i,j,k;
@@ -171,7 +172,7 @@ void sort( int N, double population[81][N] )
  {
 	 int i=0;
 
-	 //Variáveis
+	 //Variables
 	 int random1;
 	 int random2;
 	 int choose;
@@ -179,27 +180,27 @@ void sort( int N, double population[81][N] )
 	 double percentage;
 	 double total;
 
-	 //Estrutura
+	 //Structure
 	 double AUX[2][g];
 	 double T[2][G];
 
-	 //Construção da estrutura composta por indivíduos do torneio
+	 //Select some solutions from the population
 	 for ( i=0 ; i<G ; i++)
 	 {
 		 choose = rand() % N + 1;
-		 T[0][i] = choose; //índice do indivíduo escolhido
-		 T[1][i] = population[80][choose]; //raio do respectivo indivíduo
+		 T[0][i] = choose; //Index of solution selected
+		 T[1][i] = population[80][choose]; //Radius of solution selected
 	 }
 
 
-	 //Seleção por torneio
+	 //Condition to terminate the tournament
 	 while ( G>2 )
 	 {
-		 //Torneio
+		 //Tournament
 		 for ( i = 0 ; i < g ; i++)
 		 {
 
-			 //Gerações de 2 números aleatórios
+			 //Generate two random numbers
 			 random1 = rand() % G + 1;
 			 random2 = rand() % G + 1;
 			 while ( random1 == random2 )
@@ -207,10 +208,10 @@ void sort( int N, double population[81][N] )
 				 random2 = rand() % G + 1;
 			 }
 
-			 //Probabilidade de escolha
+			 //Probability variable
 			 percentage = (rand() % 100 )/100 ;
 
-			 //Promoção do torneio
+			 //Let's start the tournament
 			 total = population[80][random1] + population[80][random2];
 			 if ( percentage < ( total - population[80][random1] )/total  )
 			 {
@@ -224,7 +225,7 @@ void sort( int N, double population[81][N] )
 			 }
 		 }
 
-		 //Substituição dos indivíduos no conjunto T
+		 //Replacement of solutions in T structure
 		 for ( i=0; i<g ; i++)
 		 {
 			 T[0][i] = AUX[0][i] ;
@@ -236,13 +237,210 @@ void sort( int N, double population[81][N] )
 
 	 }
 
-	 //Indivíduos selecionados
+	 //Selected solutions
 	 for ( i=0 ; i<81 ; i++)
 	 {
 		 I1[i] = population[i][ (int)T[0][0] ];
 		 I2[i] = population[i][ (int)T[0][1] ];
 	 }
 
-
-
  }
+
+
+void crossover( int N, double I1[81], double I2[81], double I3[81] )
+{
+	double a=0.8, b=0.2;
+	int i;
+
+	for ( i=0 ; i<5 ; i++)
+	{
+		if (I1[i]>I2[i])
+		{
+			I3[i] = a*I1[i] + b*I2[i] ;
+		}
+		else
+		{
+			I3[i] = b*I1[i] + a*I2[i] ;
+		}
+	}
+
+	for ( i=5 ; i<80 ; i++)
+	{
+		if (I1[i]>I2[i])
+		{
+			I3[i] = b*I1[i] + a*I2[i] ;
+		}
+		else
+		{
+			I3[i] = a*I1[i] + b*I2[i] ;
+		}
+	}
+
+}
+
+
+void repair( double I[81] )
+{
+	int i;
+	double diff, sum=0;
+
+	for ( i=0 ; i<80 ; i++)
+	{
+		sum+=I[i];
+	}
+	diff = sum - 65;
+
+	//It happens only if diff > 0
+	if ( diff > 0 )
+	{
+		//For all position between 0 and 80
+		for ( i=80 ; i>=0 ; i-- )
+		{
+			//If this position isn't a null value
+			if ( I[i]>0  )
+			{
+				if ( I[i] < diff )
+				{
+					diff-=I[i];
+					I[i]=0;
+				}
+				else
+				{
+					I[i]-=diff;
+					break;
+				}
+			}
+		}
+	}
+}
+
+
+void mutation( double I[81] )
+{
+	//Parameters
+	int i, n;
+	double sum;
+	for ( i=0 ; i<80 ; i++)
+	{
+		sum+=I[i];
+	}
+	double diff = 65 - sum;
+	double pmutation = (rand() % 100 )/100 ;
+	double alfa=0.25, beta=0.5;
+	double donation=0;
+	int restri[80];
+
+	//Weekend constraints ------------
+	for ( i=0 ; i<80 ; i++)
+	{
+	  	restri[i]=0;
+	}
+
+	 for ( i=5 ; i<80 ; i+=7 )
+	 {
+	  	restri[i]=1;
+	 }
+
+	 for ( i=6 ; i<80 ; i+=7 )
+	 {
+	  	restri[i]=1;
+	 }
+
+
+	 //Mutation process
+
+	 if ( pmutation <= alfa )
+	 {
+		 //Add
+		 if ( diff > 0 )
+		 {
+			n = rand() % 4 ;
+			I[n]+=diff ;
+		 }
+	 }
+	 else if ( pmutation > alfa && pmutation <= ( alfa + beta ) )
+	 {
+		 //Realoc
+		 n = 5 + rand() % 74 ;
+		 while ( donation == 0)
+		 {
+			 donation = I[n]*0.8;
+			 I[n]-=donation;
+		 }
+
+		 n = rand() % 4 ;
+		 I[n]+=donation;
+
+	 }
+	 else
+	 {
+		 //Turn zero
+		 n = 5 + rand() % 74 ;
+		 do
+		 {
+			 I[n]=0;
+		 }while ( restri[n] != 0 );
+	 }
+
+}
+
+
+void realocn( double I[81] )
+{
+	int i, random;
+	for ( i=0 ; i<80 ; i++)
+	{
+		if ( I[i]<0.5 )
+		{
+			random = rand() % 4 ;
+			I[random]+=I[i];
+			I[i]=0;
+		}
+	}
+}
+
+void reposition( int N, int n, double population[81][N], double sons[81][n])
+{
+	int i, j, itr, ok, lastsol=(N-1);
+	double tol=2;
+
+	for ( i=0 ; i<n ; i++)//sons
+	{
+		ok=1; //allow the current reposition
+
+		for ( j=0 ; j<N ; j++)//population
+		{
+			//Check the equality of radius
+			if ( sons[80][i] >= population[80][j] - tol  &&  sons[80][i] <= population[80][j] + tol )
+			{
+				itr=0;
+				while ( sons[itr][i] >= population[itr][j] - tol  &&  sons[itr][i] <= population[itr][j] && itr<80 )
+				{
+					itr+=1;
+				}
+
+				if (itr != 79)
+				{
+					ok=0;
+					break;
+				}
+
+			}
+
+		}
+
+		//When ok=1, insert a current solution in population
+		if ( ok != 0 )
+		{
+			for ( itr = 0 ; itr < 80 ; itr++)
+			{
+				population[itr][lastsol] = sons[itr][i];
+			}
+			lastsol-=1;
+		}
+
+	}
+
+
+
+}

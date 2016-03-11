@@ -4,84 +4,62 @@
  Author      : ebsouza
  Version     : alfa
  Copyright   : Free to use
- Description : Hello World in C, Ansi-style
+ Description : Genetic Algorithm for a specific problem in C, Ansi-style
  ============================================================================
  */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "GA.h"
 
 int main(void) {
 
+	//Variables to loops
 	int i, j;
+	int g, r;
 
-	//Parâmetros
-	int N=256;//Tamanho da população
-	int n=10;//Número de filhos gerados
-	int gerac=300;//Número de gerações
+	//Parameters
+	int N=256;//Solutions in population
+	int n=10;//Solutions generated in GA process
+	int gerac=300;//Number of generations
 
-	//Estruturas
-	double population[81][N];
-	for ( i=0; i<81; i++)
-	{
-		for ( j=0; j<N; j++)
-		{
-			population[i][j]=0;
-		}
-	}
+	//Structures
+	double population[81][N], sons[81][n];
+	double I1[81], I2[81], I3[81];
 
-	double I1[81], I2[81];
-
-	//Geração da população inicial
+	//Generating initial population
 	generatePop( N, population );
 
-	for (  i = 0 ; i<40 ; i++)
-	{
-		//printf( "%d  -  %f ,  \n", i , population[i][1]);
-		//printf("%d",1);
-	}
-
-	//Avaliação(Inválida, somente teste)
+	//Evaluation( Only to test )
 	evaluation1 ( N, population );
 
-	for (  i = 0 ; i<N ; i++)
-	{
-		printf( "eval %f , \n", population[80][i] );
-	}
-
-	//Ordenação
+	//Sort
 	sort ( N, population);
 
-	for (  i = 0 ; i<N ; i++)
-	{
-		printf( "%f , \n", population[80][i] );
-	}
+	//Worst a solution
 
 
-	//Piorar solução*
-
-	int g,r;
-	//Loop das gerações
+	//Generation loop
 	for (g=0; g<gerac ; g++)
 	{
-		//Loop da reprodução
+		//Reproduction loop
 		for (r=0; r<n; r++)
 		{
-			//Seleção por torneio
+			//Tournment selection
 			//
 			//Crossover
 			//
-			//Correção*
+			//Fix a solution*
 			//
-			//Mutação
+			//Mutation
 			//
-			//Realoca os números infimos*
+			//Realocation*
 		}
 
-		//Avaliar novas soluções
+		//Evaluate new solutions
 		//
-		//Inserção das novas soluções na população
+		//Insert new solution generated in population
 	}
 
 
@@ -90,31 +68,34 @@ int main(void) {
 
 
 	//
-	//Armazenamento das info*
+	//Save info*
 	//
-	//Troca de mutação*
+	//Change the mutation*
 	//
-	//Condição de parada
+	//Stop condition
 	//
 	//Save*
 
-	//Fim Loop das gerações
+	//End generation loop
 	//
-	//Plotagem da população
+	//Plot the population
 
 
 
-	//-------------------Test area---------------------
+	//-------------------Export area---------------------
+	FILE *file;
+	file = fopen("/home/rngd1/workspace/GA/src/test.csv","w");
+	for (i=0; i<81; i++)
+	{
+		for (j=0; j<N; j++)
+		{
+			fprintf(file, "%f  ", population[i][j]);
+		}
+		fprintf(file, "\n");
+	}
+	fclose(file);
+	file=0;
 
-	/*
-    double test[81][N];
-    memcpy(test, population, sizeof(population));
-    for (  i = 0 ; i<40 ; i++)
-    	{
-    		printf( "%d  - test  %f ,  \n", i , test[i][1]);
-    		//printf("%d",1);
-    	}
-	*/
 
 	return 0;
 }
