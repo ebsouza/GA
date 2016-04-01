@@ -106,69 +106,21 @@ void evaluation1(int N, double population[81][N])
 	}
 }
 
-
-void sort( int N, double population[81][N] )
+void eval1( double individual[81])
 {
-	//Sort by insertion sort
-	int i=0;
-	for ( i=0 ; i<N ; i++)
+	int i;
+
+	for ( i=0 ; i<80 ; i++  )
 	{
-		int j=0;
-		int elected = population[80][i];
-		double aux[81];
-
-		for ( j=0 ; j<81 ; j++)
+		if ( individual[i] != 0)
 		{
-			aux[j]=population[j][i];
+			individual[80]+=1;
 		}
-
-		int z = i - 1 ;
-
-		while ( z>=0  &&  elected<population[80][z] )
-		{
-			for ( j=0 ; j<81 ; j++  )
-			{
-				population[j][z+1] = population[j][z] ;
-			}
-			z = z-1;
-		}
-
-		for ( j=0 ; j<81 ; j++  )
-		{
-			population[j][z+1] = aux[j] ;
-		}
-
 	}
-
 }
 
 
- void popwrost( int N, int value , double population[81][N] )
- {
-	 int i,j,k;
-	 int i1;//Indivíduo com avaliação igual a value
-	 int m=(N-1);//Controle do indivíduo de sofrerá mutação
-	 int c1=1;//Controle do indivíduo de sofrerá modificação
-
-
-	 for ( i=0 ; i<N ; i++ )
-	 {
-		 if ( population[80]>value )
-		 {
-			 i1=i;
-			 break;
-		 }
-	 }
-
-	 while ( c1<i1 )
-	 {
-		 //Mutação
-
-
-	 }
- }
-
- void selector( int N, double population[81][N], int G, double I1[81], double I2[81] )
+void selector( int N, double population[81][N], int G, double I1[81], double I2[81] )
  {
 	 int i=0;
 
@@ -279,47 +231,11 @@ void crossover( int N, double I1[81], double I2[81], double I3[81] )
 }
 
 
-void repair( double I[81] )
-{
-	int i;
-	double diff, sum=0;
-
-	for ( i=0 ; i<80 ; i++)
-	{
-		sum+=I[i];
-	}
-	diff = sum - 65;
-
-	//It happens only if diff > 0
-	if ( diff > 0 )
-	{
-		//For all position between 0 and 80
-		for ( i=80 ; i>=0 ; i-- )
-		{
-			//If this position isn't a null value
-			if ( I[i]>0  )
-			{
-				if ( I[i] < diff )
-				{
-					diff-=I[i];
-					I[i]=0;
-				}
-				else
-				{
-					I[i]-=diff;
-					break;
-				}
-			}
-		}
-	}
-}
-
-
 void mutation( double I[81] )
 {
 	//Parameters
 	int i, n;
-	double sum;
+	double sum=0;
 	for ( i=0 ; i<80 ; i++)
 	{
 		sum+=I[i];
@@ -385,20 +301,6 @@ void mutation( double I[81] )
 }
 
 
-void realocn( double I[81] )
-{
-	int i, random;
-	for ( i=0 ; i<80 ; i++)
-	{
-		if ( I[i]<0.5 )
-		{
-			random = rand() % 4 ;
-			I[random]+=I[i];
-			I[i]=0;
-		}
-	}
-}
-
 void reposition( int N, int n, double population[81][N], double sons[81][n])
 {
 	int i, j, itr, ok, lastsol=(N-1);
@@ -424,9 +326,7 @@ void reposition( int N, int n, double population[81][N], double sons[81][n])
 					ok=0;
 					break;
 				}
-
 			}
-
 		}
 
 		//When ok=1, insert a current solution in population
@@ -438,9 +338,8 @@ void reposition( int N, int n, double population[81][N], double sons[81][n])
 			}
 			lastsol-=1;
 		}
-
 	}
-
-
-
 }
+
+
+

@@ -12,6 +12,7 @@
 #include <stdlib.h>
 
 #include "GA.h"
+#include "SecondaryFunctions.h"
 
 int main(void) {
 
@@ -21,12 +22,16 @@ int main(void) {
 
 	//Parameters
 	int N=256;//Solutions in population
-	int n=10;//Solutions generated in GA process
-	int gerac=300;//Number of generations
+	int n=16;//Solutions generated in GA process
+	int G=4;//First tournament group, it need to be power of two
+	int gerac=50;//Number of generations
+	int ktclysm=0, tol=100, repop=4; //Cataclysm event
 
 	//Structures
 	double population[81][N], sons[81][n];
 	double I1[81], I2[81], I3[81];
+	double radiusInfo[gerac];
+	double newpopulation[81][N/repop];
 
 	//Generating initial population
 	generatePop( N, population );
@@ -47,44 +52,69 @@ int main(void) {
 		for (r=0; r<n; r++)
 		{
 			//Tournment selection
-			//
+			selector( N, population, G, I1, I2 );
+
 			//Crossover
-			//
+			crossover( N, I1, I2, I3 );
+
 			//Fix a solution*
-			//
+			repair( I3 );
+
 			//Mutation
-			//
+			mutation( I3 );
+
 			//Realocation*
+			realocn( I3 );
+
+			//Insert "I3" in "sons"
+			for ( i=0 ; i<80 ; i++)
+			{
+				sons[i][r]=I3[i];
+			}
 		}
 
 		//Evaluate new solutions
-		//
+		evaluation1 ( n, sons );
+
 		//Insert new solution generated in population
+		reposition( N, n, population, sons ) ;
+
+		//Sort
+		sort( N, population);
+
+		//Save the population best radius
+		radiusInfo[g]=population[80][0];
+
+
+		if (g>2)
+		{
+			//Cataclysm
+			if ( radiusInfo[g-1] == radiusInfo[g])
+			{
+				ktclysm+=1;
+			}
+			else
+			{
+				ktclysm=0;
+			}
+
+
+			//Condition to start cataclysm
+			if ( ktclysm==tol )
+			{
+				cataclysm( N, N/repop, population, newpopulation );
+				ktclysm=0;
+			}
+		}
+
 	}
 
 
-
-
-
-
-	//
-	//Save info*
-	//
-	//Change the mutation*
-	//
-	//Stop condition
-	//
-	//Save*
-
-	//End generation loop
-	//
-	//Plot the population
-
-
-
 	//-------------------Export area---------------------
+
+	//Last population
 	FILE *file;
-	file = fopen("/home/rngd1/workspace/GA/src/test.csv","w");
+	file = fopen("/home/rngd1/workspace/GA/src/population.csv","w");
 	for (i=0; i<81; i++)
 	{
 		for (j=0; j<N; j++)
@@ -94,8 +124,19 @@ int main(void) {
 		fprintf(file, "\n");
 	}
 	fclose(file);
+
+	//RadiusInfo
+	file = fopen("/home/rngd1/workspace/GA/src/radius.csv","w");
+	for (i=0; i<gerac; i++)
+	{
+		fprintf(file, "%f  \n", radiusInfo[i]);
+	}
+	fclose(file);
 	file=0;
 
+
+
+	printf("The end");
 
 	return 0;
 }
