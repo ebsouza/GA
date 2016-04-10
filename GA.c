@@ -133,15 +133,15 @@ void selector( int N, double population[81][N], int G, double I1[81], double I2[
 	 double total;
 
 	 //Structure
-	 double AUX[2][g];
 	 double T[2][G];
+	 double AUX[2][g];
 
 	 //Select some solutions from the population
 	 for ( i=0 ; i<G ; i++)
 	 {
-		 choose = rand() % N + 1;
-		 T[0][i] = choose; //Index of solution selected
-		 T[1][i] = population[80][choose]; //Radius of solution selected
+		 choose = rand() % N;
+		 T[0][i] = choose; //Solution selected index
+		 T[1][i] = population[80][choose]; //Solution selected radius
 	 }
 
 
@@ -153,8 +153,8 @@ void selector( int N, double population[81][N], int G, double I1[81], double I2[
 		 {
 
 			 //Generate two random numbers
-			 random1 = rand() % G + 1;
-			 random2 = rand() % G + 1;
+			 random1 = rand() % G ;
+			 random2 = rand() % G ;
 			 while ( random1 == random2 )
 			 {
 				 random2 = rand() % G + 1;
@@ -164,8 +164,8 @@ void selector( int N, double population[81][N], int G, double I1[81], double I2[
 			 percentage = (rand() % 100 )/100 ;
 
 			 //Let's start the tournament
-			 total = population[80][random1] + population[80][random2];
-			 if ( percentage < ( total - population[80][random1] )/total  )
+			 total = T[80][random1] + T[80][random2];
+			 if ( percentage < ( total - T[80][random1] )/total  )
 			 {
 				 AUX[0][i] = T[0][random1];
 				 AUX[1][i] = T[1][random1];

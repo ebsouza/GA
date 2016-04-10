@@ -12,7 +12,7 @@
 
 void sort( int N, double population[81][N] )
 {
-	//Sort by insertion sort
+	//Insertion sort
 	int i=0;
 	for ( i=0 ; i<N ; i++)
 	{

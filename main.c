@@ -21,8 +21,8 @@ int main(void) {
 	int g, r;
 
 	//Parameters
-	int N=256;//Solutions in population
-	int n=16;//Solutions generated in GA process
+	int N=8;//Solutions in population
+	int n=10;//Solutions generated in GA process
 	int G=4;//First tournament group, it need to be power of two
 	int gerac=50;//Number of generations
 	int ktclysm=0, tol=100, repop=4; //Cataclysm event
@@ -56,6 +56,8 @@ int main(void) {
 
 			//Crossover
 			crossover( N, I1, I2, I3 );
+
+			//----->Tested until here!<-----
 
 			//Fix a solution*
 			repair( I3 );
@@ -130,6 +132,7 @@ int main(void) {
 	for (i=0; i<gerac; i++)
 	{
 		fprintf(file, "%f  \n", radiusInfo[i]);
+		//printf("Raio %f \n", population[80][i]);
 	}
 	fclose(file);
 	file=0;
