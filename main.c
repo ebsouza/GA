@@ -21,9 +21,9 @@ int main(void) {
 	int g, r;
 
 	//Parameters
-	int N=8;//Solutions in population
+	int N=256;//Solutions in population
 	int n=10;//Solutions generated in GA process
-	int G=4;//First tournament group, it need to be power of two
+	int G=16;//First tournament group, it need to be power of two
 	int gerac=50;//Number of generations
 	int ktclysm=0, tol=100, repop=4; //Cataclysm event
 
@@ -43,6 +43,7 @@ int main(void) {
 	sort ( N, population);
 
 	//Worst a solution
+	double sum=0;
 
 
 	//Generation loop
@@ -56,8 +57,6 @@ int main(void) {
 
 			//Crossover
 			crossover( N, I1, I2, I3 );
-
-			//----->Tested until here!<-----
 
 			//Fix a solution*
 			repair( I3 );
@@ -77,6 +76,8 @@ int main(void) {
 
 		//Evaluate new solutions
 		evaluation1 ( n, sons );
+
+		//----->Tested until here!<-----
 
 		//Insert new solution generated in population
 		reposition( N, n, population, sons ) ;
@@ -113,7 +114,7 @@ int main(void) {
 
 
 	//-------------------Export area---------------------
-
+	/*
 	//Last population
 	FILE *file;
 	file = fopen("/home/rngd1/workspace/GA/src/population.csv","w");
@@ -138,7 +139,7 @@ int main(void) {
 	file=0;
 
 
-
+	*/
 	printf("The end");
 
 	return 0;

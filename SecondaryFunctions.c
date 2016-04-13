@@ -105,11 +105,12 @@ void repair( double I[81] )
 	if ( diff > 0 )
 	{
 		//For all position between 0 and 80
-		for ( i=80 ; i>=0 ; i-- )
+		for ( i=79 ; i>=0 ; i-- )
 		{
 			//If this position isn't a null value
 			if ( I[i]>0  )
 			{
+				double a=I[i];
 				if ( I[i] < diff )
 				{
 					diff-=I[i];
@@ -123,18 +124,21 @@ void repair( double I[81] )
 			}
 		}
 	}
+
 }
 
 
 void realocn( double I[81] )
 {
 	int i, random;
+	double a=0;
 	for ( i=0 ; i<80 ; i++)
 	{
 		if ( I[i]<0.5 )
 		{
-			random = rand() % 4 ;
-			I[random]+=I[i];
+			random = rand() % 5 ;
+			a=I[i];
+			I[random]+=a;
 			I[i]=0;
 		}
 	}

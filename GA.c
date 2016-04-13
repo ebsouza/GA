@@ -157,7 +157,7 @@ void selector( int N, double population[81][N], int G, double I1[81], double I2[
 			 random2 = rand() % G ;
 			 while ( random1 == random2 )
 			 {
-				 random2 = rand() % G + 1;
+				 random2 = rand() % G ;
 			 }
 
 			 //Probability variable
@@ -241,7 +241,7 @@ void mutation( double I[81] )
 		sum+=I[i];
 	}
 	double diff = 65 - sum;
-	double pmutation = (rand() % 100 )/100 ;
+	double pmutation = (rand() % 100 + 1)/100 ;
 	double alfa=0.25, beta=0.5;
 	double donation=0;
 	int restri[80];
@@ -270,28 +270,29 @@ void mutation( double I[81] )
 		 //Add
 		 if ( diff > 0 )
 		 {
-			n = rand() % 4 ;
+			n = rand() % 5 ;
 			I[n]+=diff ;
 		 }
 	 }
 	 else if ( pmutation > alfa && pmutation <= ( alfa + beta ) )
 	 {
 		 //Realoc
-		 n = 5 + rand() % 74 ;
+		 n = 5 + rand() % 75 ;
 		 while ( donation == 0)
 		 {
 			 donation = I[n]*0.8;
 			 I[n]-=donation;
+			 n = 5 + rand() % 75 ;
 		 }
 
-		 n = rand() % 4 ;
+		 n = rand() % 5 ;
 		 I[n]+=donation;
 
 	 }
 	 else
 	 {
 		 //Turn zero
-		 n = 5 + rand() % 74 ;
+		 n = 5 + rand() % 75 ;
 		 do
 		 {
 			 I[n]=0;
