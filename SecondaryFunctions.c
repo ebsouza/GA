@@ -49,12 +49,12 @@ void sort( int N, double population[81][N] )
 void popwrost( int N, int value , double population[81][N] )
  {
 	 int i=0;
-	 int i1=0;//Indivíduo com avaliação igual a value
-	 int m=(N-2);//Controle do indivíduo de sofrerá mutação
-	 int c1=0;//Controle do indivíduo que será modificação
-	 double I[81]; //Indivíduo dummy
+	 int i1=0;//Solution radius equals value
+	 int m=(N-2);//Reference to solution that will suffer mutation
+	 int c1=0;//Reference to solution that will be replaced
+	 double I[81]; //Aux solution dummy
 
-	 //Identifica o indice do indivíduo com raio menor que value
+	 //Discover solution with radius less than value
 	 while ( population[80][i] < value )
 	 {
 		 i+=1;
@@ -156,7 +156,7 @@ void cataclysm( int N, int n, double population[81][N], double newpopulation[81]
 	{
 		for (j=0 ; j<81 ; j++)
 		{
-			population[j][i] = newpopulation[j][i];
+			population[j][N-1-i] = newpopulation[j][i];
 		}
 	}
 

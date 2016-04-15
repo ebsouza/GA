@@ -22,7 +22,7 @@ void generatePop( int N, double population[81][N] )
   double doseaux=0; //Auxiliary variable dose
   int choose; //Choosen day
 
-  int restri[81]; //Constraints mask
+  int restri[81]; //Constraints
 
 
 
@@ -61,7 +61,7 @@ void generatePop( int N, double population[81][N] )
         //Set doseaux
         doseaux = dosemax * ( (double) (rand() % 100) ) / 300 ;
 
-        //Insert a dose in current solution
+        //Insert dose in current solution
         population[choose][i] += doseaux ;
         dosemax -= doseaux ;
 
@@ -136,7 +136,7 @@ void selector( int N, double population[81][N], int G, double I1[81], double I2[
 	 double T[2][G];
 	 double AUX[2][g];
 
-	 //Select some solutions from the population
+	 //Select some solutions from population
 	 for ( i=0 ; i<G ; i++)
 	 {
 		 choose = rand() % N;
@@ -313,7 +313,7 @@ void reposition( int N, int n, double population[81][N], double sons[81][n])
 
 		for ( j=0 ; j<N ; j++)//population
 		{
-			//Check the equality of radius
+			//Check the radius equality
 			if ( sons[80][i] >= population[80][j] - tol  &&  sons[80][i] <= population[80][j] + tol )
 			{
 				itr=0;
@@ -330,7 +330,7 @@ void reposition( int N, int n, double population[81][N], double sons[81][n])
 			}
 		}
 
-		//When ok=1, insert a current solution in population
+		//When ok=1, insert a current solution
 		if ( ok != 0 )
 		{
 			for ( itr = 0 ; itr < 80 ; itr++)

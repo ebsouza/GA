@@ -5,15 +5,10 @@
  *      Author: rngd1
  */
 
-//#include "GA.h"
 
 #ifndef SECONDARYFUNCTIONS_H_
 #define SECONDARYFUNCTIONS_H_
 
-//#include "GA.h"
-
-  //int N=256;
-  //int n=10;
 
   //----------------Sort the population structure----------------
   void sort( int N, double population[81][N] );

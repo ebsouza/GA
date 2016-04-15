@@ -8,9 +8,6 @@
 #ifndef GA_H_
 #define GA_H_
 
-  //int N=256;
-  //int n=10;
-
   //----------------Generation of the initial population----------------
   void generatePop( int N, double population[81][N] );
 

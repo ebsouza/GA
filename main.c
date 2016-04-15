@@ -43,7 +43,6 @@ int main(void) {
 	sort ( N, population);
 
 	//Worst a solution
-	double sum=0;
 
 
 	//Generation loop
@@ -76,8 +75,6 @@ int main(void) {
 
 		//Evaluate new solutions
 		evaluation1 ( n, sons );
-
-		//----->Tested until here!<-----
 
 		//Insert new solution generated in population
 		reposition( N, n, population, sons ) ;
@@ -113,11 +110,12 @@ int main(void) {
 	}
 
 
+
 	//-------------------Export area---------------------
-	/*
+
 	//Last population
 	FILE *file;
-	file = fopen("/home/rngd1/workspace/GA/src/population.csv","w");
+	file = fopen("~/workspace/GA/src/population.csv","w");
 	for (i=0; i<81; i++)
 	{
 		for (j=0; j<N; j++)
@@ -129,18 +127,16 @@ int main(void) {
 	fclose(file);
 
 	//RadiusInfo
-	file = fopen("/home/rngd1/workspace/GA/src/radius.csv","w");
+	file = fopen("~/workspace/GA/src/radius.csv","w");
 	for (i=0; i<gerac; i++)
 	{
 		fprintf(file, "%f  \n", radiusInfo[i]);
-		//printf("Raio %f \n", population[80][i]);
 	}
 	fclose(file);
+
+	//delete file;
 	file=0;
 
-
-	*/
-	printf("The end");
 
 	return 0;
 }
