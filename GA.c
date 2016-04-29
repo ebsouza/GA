@@ -317,12 +317,12 @@ void reposition( int N, int n, double population[81][N], double sons[81][n])
 			if ( sons[80][i] >= population[80][j] - tol  &&  sons[80][i] <= population[80][j] + tol )
 			{
 				itr=0;
-				while ( sons[itr][i] >= population[itr][j] - tol  &&  sons[itr][i] <= population[itr][j] && itr<80 )
+				while ( sons[itr][i] >= population[itr][j] - tol  &&  sons[itr][i] <= population[itr][j] + tol && itr<80 )
 				{
 					itr+=1;
 				}
 
-				if (itr != 79)
+				if (itr == 80)
 				{
 					ok=0;
 					break;

@@ -144,10 +144,11 @@ void realocn( double I[81] )
 	}
 }
 
-void cataclysm( int N, int n, double population[81][N], double newpopulation[81][n])
+void cataclysm( int N, double population[81][N], int repop)
 {
-	int i,j;
+	int i, j, n = N/repop;
 
+	double newpopulation[81][n];
 	generatePop( n, newpopulation );
 	evaluation1( n, newpopulation );
 
