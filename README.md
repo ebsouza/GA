@@ -1,6 +1,6 @@
 ## **Genetic Algorithms**
 
-Genetic Algorithms(GA) are a very popular class of Evolutionary Algorithms. They have become popular due their use in solving hard combinatorial optimization problems. Above there are a basic Genetic Algorithm template:
+Genetic Algorithms(GA) are a very popular class of Evolutionary Algorithms. They have become popular due their use in solving hard combinatorial optimization problems. There are a basic Genetic Algorithm template below:
 
 ```
 Choose an initial population of chromosomes
