@@ -2,21 +2,22 @@
 
 Genetic Algorithms(GA) are a very popular class of Evolutionary Algorithms. They have become popular due their use in solving hard combinatorial optimization problems. Above there are a basic Genetic Algorithm template:
 
+```
 Choose an initial population of chromosomes
-**while** termination condition not satisfied **do**
-	**repeat**
-		**if** crossover condition satisfied **then**
+WHILE termination condition not satisfied DO
+	REPEAT
+		IF crossover condition satisfied THEN
 			select parent chromosomes
 			choose crossover parameters
 			perform crossover
-		**if** mutation condition satisfied **then**
+		IF mutation condition satisfied THEN
 			choose mutation points
 			perform mutation
 			evaluate fitness of offspring
-	**until** sufficient offspring created
+	UNTIL sufficient offspring created
 select new population
-**end while**
-
+END WHILE
+```
 
 
 ## **About this project**
