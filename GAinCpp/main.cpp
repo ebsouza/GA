@@ -3,7 +3,7 @@
 // Author      : ebsouza
 // Version     :
 // Copyright   : 
-// Description : Genetic Algorithm for a specific problem - Alfa Version
+// Description : Genetic Algorithm
 //============================================================================
 
 #include <iostream>
@@ -11,8 +11,7 @@
 using namespace std;
 
 int main() {
-	cout << "--------Start--------" << endl;
-
+	
 	//Variables to loops
 	int i, j;
 	int g, r;
@@ -22,9 +21,12 @@ int main() {
 	int gerac=5;//Number of generations
 	int ktclysm=0, tol=100, repop=4; //Cataclysm event
 
-	//Structures
+	//Statistics
 	double radiusInfo[gerac];
 
+	//Start the optimization process
+	cout << "--------Start--------" << endl;
+	
 	Numeric sol;
 
 	sol.generatePop();
