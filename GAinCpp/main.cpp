@@ -33,7 +33,7 @@ int main() {
 
 	sol.sortPopulation();
 
-	sol.exportPop();
+	sol.mutation();
 
 	cout << "--------End--------" << endl;
 

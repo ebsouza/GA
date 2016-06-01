@@ -25,19 +25,19 @@ public:
 	void generatePop();
 
 	//Evaluation
-	//TODO
+	void evaluation( int opt );
 
 	//Selection
-	//TODO
+	void tournment( int G );
 
 	//Crossover
-	//TODO
+	void crossover();
 
 	//Mutation
-	//TODO
+	void mutation();
 
 	//Reposition
-	//TODO
+	void reposition();
 
 	//Auxiliary
 	void exportPop(); //Export a csv file with population
@@ -48,9 +48,9 @@ public:
 
 private:
 
-	double population[length][totalpop] ;
-	double newpopulation[length][totalnewpop] ;
-	double I1[length], I2[length], I3[length];
+	double population[length+1][totalpop] ;
+	double newpopulation[length+1][totalnewpop] ;
+	double I[length+1], I1[length+1], I2[length+1];
 
 };
 
