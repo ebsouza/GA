@@ -9,11 +9,12 @@
 #include <time.h>       /* time */
 #include <iostream>
 
+
 #ifndef NUMERIC_H_
 #define NUMERIC_H_
 
-#define totalpop 10
-#define totalnewpop 10
+#define totalpop 500
+#define totalnewpop 100
 #define length 5
 
 class Numeric {
@@ -25,7 +26,7 @@ public:
 	void generatePop();
 
 	//Evaluation
-	void evaluation( int opt );
+	void evaluation( int opt ); // 0 - population ; 1 - I1 & I2 ; 2 - I
 
 	//Selection
 	void tournment( int G );
@@ -44,7 +45,9 @@ public:
 
 	double getValue(int i, int j); // Get a value of i,j element
 
-	void sortPopulation(); // Sort by last element in a row
+	void sortPopulation(); // Sort by last element in a row (FIXME)
+
+	void updateNewpopulation(int index); //Insert a solution I in newpopulation structure
 
 private:
 

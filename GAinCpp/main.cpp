@@ -17,12 +17,11 @@ int main() {
 	int g, r;
 
 	//Parameters
-	int G=16;//First tournament group, it need to be power of two
-	int gerac=5;//Number of generations
-	int ktclysm=0, tol=100, repop=4; //Cataclysm event
+	int G=32;//First tournament group, it need to be power of two
+	int gerac=1000;//Number of generations
 
 	//Statistics
-	double radiusInfo[gerac];
+	double fitnessInfo[gerac];
 
 	//Start the optimization process
 	cout << "--------Start--------" << endl;
@@ -31,9 +30,51 @@ int main() {
 
 	sol.generatePop();
 
+	sol.evaluation(0);
+
 	sol.sortPopulation();
 
-	sol.mutation();
+	//Generation loop
+	for (g=0; g<gerac ; g++)
+	{
+		//Reproduction loop
+		for (r=0; r<totalnewpop; r++)
+		{
+			//Tournment selection
+			sol.tournment(G);
+
+			//Crossover
+			sol.crossover();
+
+			//Eval the new solution
+			sol.evaluation(2);
+
+			//Mutation
+			sol.mutation();
+
+			//Insert a new solution in newpopulation structure
+			sol.updateNewpopulation(r);
+
+		}
+
+		//Reposition
+		sol.reposition();
+
+		sol.sortPopulation();
+
+		//Statistics
+		fitnessInfo[g]=sol.getValue(length,0);
+	}
+
+	for (i=0;i<gerac;i++)
+	{
+		cout<<fitnessInfo[i]<<endl;
+	}
+
+	for (i=0;i<totalpop/2;i++)
+	{
+		cout<< sol.getValue(length,i)<<endl;
+	}
 
 	cout << "--------End--------" << endl;
 

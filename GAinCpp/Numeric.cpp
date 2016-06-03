@@ -20,11 +20,15 @@ Numeric::~Numeric()
 void Numeric::generatePop()
 {
 	int i,j;
+
+	//seed
+	srand( time( NULL ) );
+
 	for ( j=0 ; j<totalpop; j++ )
 	{
 		for ( i=0 ; i<length ; i++ )
 		{
-			population[i][j]= rand() % 100;
+			population[i][j]= double (rand() % 100);
 		}
 	}
 }
@@ -98,8 +102,8 @@ void Numeric::tournment(int G)
 		 for ( i = 0 ; i < g ; i++)
 		 {
 			 //Generate two random numbers
-			 random1 = rand() % 2*g ;
-			 random2 = rand() % 2*g ;
+			 random1 = rand() % G ;
+			 random2 = rand() % G ;
 			 while ( random1 == random2 )
 			 {
 				 random2 = rand() % G ;
@@ -155,7 +159,7 @@ void Numeric::mutation()
 	{
 		if ( random < 0.4)
 		{
-			I[i] = rand() % 50;
+			I[i] = 0;
 		}
 	}
 
@@ -173,7 +177,7 @@ void Numeric::reposition()
 		}
 	}
 
-	sortPopulation();
+	//sortPopulation();
 }
 
 void Numeric::exportPop()
@@ -181,8 +185,9 @@ void Numeric::exportPop()
 	int i,j;
 
 	FILE *file;
+
 	file = fopen("/home/rngd1/population.csv","w");
-	for (i=0; i<length; i++)
+	for (i=0; i<length+1; i++)
 	{
 		for (j=0; j<totalpop; j++)
 		{
@@ -192,6 +197,7 @@ void Numeric::exportPop()
 	}
 	fclose(file);
 	file=0;
+
 }
 
 double Numeric::getValue(int i, int j)
@@ -234,3 +240,11 @@ void Numeric::sortPopulation()
 
 }
 
+void Numeric::updateNewpopulation(int index)
+{
+	int i;
+	for(i=0; i<length+1 ; i++)
+	{
+		newpopulation[i][index]=I[i];
+	}
+}
