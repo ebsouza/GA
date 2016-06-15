@@ -177,7 +177,7 @@ void Numeric::reposition()
 		}
 	}
 
-	//sortPopulation();
+	sortPopulation();
 }
 
 void Numeric::exportPop()
@@ -212,26 +212,26 @@ void Numeric::sortPopulation()
 	for ( i=0 ; i<totalpop ; i++)
 	{
 		int j=0;
-		int elected = population[length-1][i];
-		double aux[length];
+		int elected = population[length][i];
+		double aux[length+1];
 
-		for ( j=0 ; j<length ; j++)
+		for ( j=0 ; j<(length+1) ; j++)
 		{
 			aux[j]=population[j][i];
 		}
 
 		int z = i - 1 ;
 
-		while ( z>=0  &&  elected<population[length-1][z] )
+		while ( z>=0  &&  elected<population[length][z] )
 		{
-			for ( j=0 ; j<length ; j++  )
+			for ( j=0 ; j<(length+1) ; j++  )
 			{
 				population[j][z+1] = population[j][z] ;
 			}
 			z = z-1;
 		}
 
-		for ( j=0 ; j<length ; j++  )
+		for ( j=0 ; j<(length+1) ; j++  )
 		{
 			population[j][z+1] = aux[j] ;
 		}
