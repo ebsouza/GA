@@ -60,8 +60,6 @@ int main() {
 		//Reposition
 		sol.reposition();
 
-		sol.sortPopulation();
-
 		//Statistics
 		fitnessInfo[g]=sol.getValue(length,0);
 	}
