@@ -51,7 +51,6 @@ The main search components for designing an evolutionary algorithm are as follow
 - TALBI, E.-G. Metaheuristics: from design to implementation. John Wiley & Sons, Honoken, New Jersey, 2009.
 
 
-
 # **How to use**
 
 You need define some parameters in Numeric.h file. You're free to choose their values, but you need respect some conditions such as follows:
