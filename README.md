@@ -1,12 +1,12 @@
 # **About**
 
-I developed this Genetic Algorithm template to help students that haven't familiarity with C++ programming to implement your own algorithm for theirs general or specific problem. 
+I developed this Genetic Algorithm template to help students with no familiarity in C++ programming. It's easy to read and modify the main methods and structure. Currently I'm developing another version, high-performance programming oriented.
 
 ## **Audience**
 
-Researchers and students that are not familiar with C++ programming, they can use this template code to adapt this to solve their own problems.
+Researchers and students that are not familiar with C++ programming, they can adapt this template to solve their own problems.
 
-## **Prerequsites**
+## **Prerequisites**
 
 If you want use this code, you need basic knowledge in computer programming( not a specific language ) and know the main aspects of Genetic Algorithm. To increase your knowledge in Genetic Algorithms, I recommend the book "Metaheuristics - From Design To Implementation, El-Ghazali Talbi".
 
@@ -62,6 +62,7 @@ You need define some parameters in Numeric.h file. You're free to choose their v
 
 # **TO DO list**
 
+- Increase the perfomance and extensibility.
 - Add more functions like crossover, mutation, selection and replacement.
 - Expand the template to another chromossome representations.
 
