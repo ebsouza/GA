@@ -1,15 +1,10 @@
 # **About**
 
-I developed this Genetic Algorithm template to help students with no familiarity in C++ programming. It's easy to read and modify the main methods and structure. Currently I'm developing another version, high-performance programming oriented.
+I'm developing this Genetic Algorithm(GA) template to help professionals and students to start using this metaheuristic. Due the operators and algorithms diversity in GA, my intention is do some basic codes to bring forward further implementations. To increase your knowledge in Genetic Algorithms, I recommend "Metaheuristics - From Design To Implementation, El-Ghazali Talbi".
 
-## **Audience**
+## **Project Status**
 
-Researchers and students that are not familiar with C++ programming, they can adapt this template to solve their own problems.
-
-## **Prerequisites**
-
-If you want use this code, you need basic knowledge in computer programming( not a specific language ) and know the main aspects of Genetic Algorithm. To increase your knowledge in Genetic Algorithms, I recommend the book "Metaheuristics - From Design To Implementation, El-Ghazali Talbi".
-
+**DEVELOPMENT** | TESTS | CONCLUDED 
 
 
 # **Genetic Algorithms**
@@ -51,24 +46,8 @@ The main search components for designing an evolutionary algorithm are as follow
 - TALBI, E.-G. Metaheuristics: from design to implementation. John Wiley & Sons, Honoken, New Jersey, 2009.
 
 
-
 # **How to use**
 
-You need define some parameters in Numeric.h file. You're free to choose their values, but you need respect some conditions such as follows:
-
-- totalpop>totalnewpop
-- G = 2^n
-
-
-# **TO DO list**
-
-- Increase the perfomance and extensibility.
-- Add more functions like crossover, mutation, selection and replacement.
-- Expand the template to another chromossome representations.
-
-
-
-
-
+(Coming soon)
 
 
