@@ -48,6 +48,30 @@ The main search components for designing an evolutionary algorithm are as follow
 
 # **How to use**
 
-(Coming soon)
+To build this project: 
+
+```
+# In CMakeLists.txt directory
+# 1) First option
+$ cmake .
+
+# 2) Second option
+$ mkdir build
+$ cd build
+$ cmake ..
+
+# Both options will create the executable file named GAlgorithm
+```
+
+To use Gprof Tool
+
+```
+# Run executable file GAlgorithm at least once
+$ ./GAlgorithm
+# Execute gprofile command
+$ gprof GAlgorithm gmon.out > analysis.txt
+
+# The new text file named analysis.txt will contain the profiling information  
+```
 
 
