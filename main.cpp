@@ -16,7 +16,5 @@ int main() {
 
 	randomGeneration( solution );
 
-	printSolution( solution, 0);
-
 	return 0;
 }
