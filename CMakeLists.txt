@@ -7,7 +7,6 @@ file(GLOB GA "GA/*.cpp")
 file(GLOB UTIL "util/*.cpp") 
 file(GLOB SOURCES "*.cpp") 
 
-
 add_executable(GAlgorithm ${SOURCES} ${GA} ${UTIL})
 
 
