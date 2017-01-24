@@ -12,6 +12,7 @@
 #define totalpop 100 //Population size
 #define totalnewpop 20 //New population(created every generation) size
 #define length 5 //Chromosome length
+#define MAX_PROBLEM 1 // 0 - Minimization problem ; 1 - Maximization problem
 
 
 class Solution {

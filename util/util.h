@@ -14,7 +14,7 @@ void printSolution( Solution &solution, unsigned int solutionIndex );
 void printPopulationFitness( Solution &solution );
 
 /*
-* Population sort by fitness in ascending order (Insertion Sort)
+* Population sort (Insertion Sort) by fitness in ascending order 
 * @param[in] solution
 */
 void sortPopulation( Solution &solution );
