@@ -17,6 +17,8 @@ void tournmentSelection(Solution&solution, unsigned int groupSize, unsigned int 
    std::vector <unsigned int> firstGroup;
    std::vector <unsigned int> nextGroup;
 
+   solution.selected.clear();
+   
    while(2 * nextGroupSize < groupSize){
          nextGroupSize *= 2;
          }
