@@ -8,7 +8,7 @@
 void intermediateCrossover( Solution &solution, unsigned int newSolutionIndex);
 
 /*
-* Mutation operator: small new solution changes 
+* Mutation operator: small changes in new solution 
 * @param[in] solution
 * @param[in] newSolutionIndex
 * @param[in] mutationRate

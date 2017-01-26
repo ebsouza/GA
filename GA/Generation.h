@@ -1,6 +1,5 @@
 #include "Solution.h"
 
-
 /*
 * Generation a random value population
 * @param[in] solution
