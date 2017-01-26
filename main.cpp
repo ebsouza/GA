@@ -32,9 +32,9 @@ int main()
        for(unsigned int j = 0; j < totalnewpop; j++){
            tournmentSelection(solution, 40, 2);
 
-           intermediateCrossover(solution, i);
+           intermediateCrossover(solution, j);
 
-           mutation(solution, i, 0.15);
+           mutation(solution, j, 0.15);
            }
 
        dummyNewpopEval(solution);
