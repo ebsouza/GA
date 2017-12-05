@@ -16,8 +16,6 @@
 
 int main()
 {
-   //Sorry, it is not working yet
-
    Solution solution = Solution();
 
    randomGeneration(solution);
