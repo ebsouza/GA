@@ -4,7 +4,7 @@ I'm developing this Genetic Algorithm(GA) template to help professionals and stu
 
 ## **Project Status**
 
-**DEVELOPMENT** | TESTS | CONCLUDED 
+DEVELOPMENT | TESTS | **CONCLUDED** 
 
 
 # **Genetic Algorithms**
